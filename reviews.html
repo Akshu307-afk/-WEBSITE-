@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f5">
+  <meta name="description" content="Leave a review or send Akshobhya a friendly message.">
+  <title>Reviews & Messages — Akshobhya</title>
+  <style>
+    :root{--bg:#f7f7f5;--paper:#fff;--ink:#171717;--muted:#6b6b68;--line:#e7e7e2;--accent:#326b5b;--soft:#edf3ef}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(900px,calc(100% - 36px));margin:auto}.nav{border-bottom:1px solid var(--line)}.nav-inner{height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-size:1.1rem;font-weight:800;letter-spacing:-.05em}.brand span{color:var(--accent)}.links{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}.links a:hover{color:var(--accent)}main{padding:68px 0 80px}.eyebrow{color:var(--accent);font-weight:750;letter-spacing:.13em;text-transform:uppercase;font-size:.78rem}h1{font-size:clamp(2.7rem,7vw,5rem);letter-spacing:-.08em;line-height:1.02;margin:16px 0}.lead{color:var(--muted);font-size:1.12rem;max-width:640px}.form-card{margin-top:32px;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,34px);max-width:720px}.field{margin-bottom:20px}label{display:block;font-weight:650;margin-bottom:7px}input,textarea,select{width:100%;border:1px solid #d9d9d3;border-radius:10px;padding:12px 13px;font:inherit;color:var(--ink);background:white}input:focus,textarea:focus,select:focus{outline:3px solid #d9e9e1;border-color:var(--accent)}textarea{min-height:145px;resize:vertical}.hint{font-size:.82rem;color:var(--muted);margin:6px 0 0}.check{display:flex;align-items:flex-start;gap:10px;color:var(--muted);font-size:.88rem}.check input{width:auto;margin-top:6px}.submit{border:0;border-radius:10px;padding:13px 18px;background:var(--ink);color:white;font:inherit;font-weight:700;cursor:pointer}.submit:hover{background:#303b36}.privacy{color:var(--muted);font-size:.82rem;margin-top:18px}.footer{padding:24px 0 32px;border-top:1px solid var(--line);color:var(--muted);font-size:.84rem}@media(max-width:560px){.nav-inner{height:auto;min-height:68px;padding:12px 0;align-items:flex-start;flex-direction:column}.links{gap:12px}main{padding-top:50px}}
+  </style>
+</head>
+<body>
+  <header class="nav"><div class="wrap nav-inner"><a class="brand" href="index.html">akshobhya<span>.</span></a><nav class="links" aria-label="Main navigation"><a href="index.html">Home</a><a href="Index1.html">About</a><a href="index2.html">Learning</a></nav></div></header>
+  <main class="wrap">
+    <div class="eyebrow">Guestbook · Reviews · Friendly messages</div>
+    <h1>Got a thought?<br>Leave a note.</h1>
+    <p class="lead">Tell me what you think of the website, share a suggestion, or just say hello. Please be kind and don't share private information.</p>
+    <form class="form-card" name="reviews-and-messages" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="reviews-and-messages">
+      <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
+      <div class="field"><label for="name">Name or nickname</label><input id="name" name="name" type="text" maxlength="60" placeholder="What should I call you?" required></div>
+      <div class="field"><label for="email">Gmail address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@gmail.com" required><p class="hint">Please use an address ending in @gmail.com. The form checks the format, but cannot confirm that the mailbox actually exists.</p></div>
+      <div class="field"><label for="kind">What is this about?</label><select id="kind" name="kind" required><option value="">Choose one</option><option>Website review</option><option>Suggestion</option><option>Just saying hello</option><option>Project idea</option></select></div>
+      <div class="field"><label for="rating">Website rating</label><select id="rating" name="rating"><option value="">Skip rating</option><option>5 — Awesome</option><option>4 — Great</option><option>3 — Good</option><option>2 — Needs work</option><option>1 — Not for me</option></select></div>
+      <div class="field"><label for="message">Your message</label><textarea id="message" name="message" maxlength="1500" placeholder="Write your review, idea, or friendly message…" required></textarea><p class="hint">Up to 1,500 characters. Keep it respectful and don't include passwords, phone numbers, or other sensitive details.</p></div>
+      <label class="check"><input type="checkbox" name="permission" value="I understand" required><span>I understand that the site owner will be able to read the message and email address I submit.</span></label>
+      <p style="margin-top:22px"><button class="submit" type="submit">Send message ↗</button></p>
+      <p class="privacy">Submissions are collected by Netlify Forms when form handling is enabled for this site. This page does not display messages publicly.</p>
+    </form>
+  </main>
+  <footer class="wrap footer">© 2026 Akshobhya · <a href="index.html">Back to portfolio</a></footer>
+  <script>
+    const form = document.querySelector('form');
+    const email = document.querySelector('#email');
+    form.addEventListener('submit', function(event) {
+      const value = email.value.trim();
+      if (!value.toLowerCase().endsWith('@gmail.com')) {
+        event.preventDefault();
+        email.setCustomValidity('Please enter a Gmail address ending in @gmail.com.');
+        email.reportValidity();
+      } else {
+        email.setCustomValidity('');
+      }
+    });
+    email.addEventListener('input', () => email.setCustomValidity(''));
+  </script>
+</body>
+</html>
