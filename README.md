@@ -1,39 +1,41 @@
-Akshobhya Kadiri
----
+# Akshobhya — Student & Maker
 
-**Author:** Akshobhya Kadiri
-**Email:** [kakshobhya99441@gmail.com](mailto:kakshobhya99441@gmail.com)
+A personal portfolio showcasing my journey into coding, electronics, robotics, and creative engineering.
 
----
+🌐 **Live website:** https://info-akshobhya.netlify.app/
 
-### Training Details
+## What's inside
 
-**Instructor:** *Maduri Akka*
+- **Home** — featured projects and current builds
+- **About** — my interests and maker journey
+- **Learning** — skills and topics I'm exploring
+- **Reviews & Messages** — a form for feedback and messages
+- **3D-style hardware illustrations** — including an Arduino Uno and DIY macropad concept
 
-**Institution:** Purnapramati Gurukula, Bengaluru
-**Date:** April 2025
+## Projects featured
 
----
+- ESP32 OLED HUD
+- Personal AI assistant concept
+- Arduino experiments
+- DIY coding macropad
 
-### About This Repository
+## Built with
 
-I am learning programming languages.
+- HTML
+- CSS
+- JavaScript
+- Netlify Forms for the feedback form
+- Netlify for hosting
 
----
+The site is designed to be lightweight, responsive, and easy to explore on desktop and mobile.
 
-### Scratch
-[My Account](https://scratch.mit.edu/users/akshobhya1233/)
----
-#### Python Programming
+## Run locally
 
-* Arithmetic Operators
-* Functions
-* Control Statements
-* Loop Statements
-* ETC
-#### Operating Systems
+1. Download or clone this repository.
+2. Open `index.html` in a browser.
 
-Basic concepts and practice related to operating systems.
+No build step is required.
 
+## Repository
 
----
+Source code for the portfolio website: https://github.com/Akshu307-afk/-WEBSITE-/
