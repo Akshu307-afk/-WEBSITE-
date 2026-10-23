@@ -17,9 +17,9 @@ A personal portfolio showcasing my journey into coding, electronics, robotics, a
 - ESP32 OLED HUD
 - Personal AI assistant concept
 - Arduino experiments
-- DIY coding macropad
+- DIY coding macropad — [view the HackPad-Macropad repository](https://github.com/Akshu307-afk/HackPad-Macropad)
 
-## Built with
+## Project links\n\n- **Macropad build:** https://github.com/Akshu307-afk/HackPad-Macropad\n- **Portfolio source:** https://github.com/Akshu307-afk/-WEBSITE-/\n\n## Built with
 
 - HTML
 - CSS
