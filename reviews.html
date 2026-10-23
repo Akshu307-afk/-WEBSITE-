@@ -17,7 +17,7 @@
     <div class="eyebrow">Guestbook · Reviews · Friendly messages</div>
     <h1>Got a thought?<br>Leave a note.</h1>
     <p class="lead">Tell me what you think of the website, share a suggestion, or just say hello. Please be kind and don't share private information.</p>
-    <form class="form-card" name="reviews-and-messages" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <form class="form-card" name="reviews-and-messages" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="reviews-and-messages">
       <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
       <div class="field"><label for="name">Name or nickname</label><input id="name" name="name" type="text" maxlength="60" placeholder="What should I call you?" required></div>
@@ -27,7 +27,7 @@
       <div class="field"><label for="message">Your message</label><textarea id="message" name="message" maxlength="1500" placeholder="Write your review, idea, or friendly message…" required></textarea><p class="hint">Up to 1,500 characters. Keep it respectful and don't include passwords, phone numbers, or other sensitive details.</p></div>
       <label class="check"><input type="checkbox" name="permission" value="I understand" required><span>I understand that the site owner will be able to read the message and email address I submit.</span></label>
       <p style="margin-top:22px"><button class="submit" type="submit">Send message ↗</button></p>
-      <p class="privacy">Submissions are collected by Netlify Forms when form handling is enabled for this site. This page does not display messages publicly.</p>
+      <p class="privacy">Messages are private to the site owner and will not appear publicly. The form works after Netlify Forms is enabled and this site has been redeployed.</p>
     </form>
   </main>
   <footer class="wrap footer">© 2026 Akshobhya · <a href="index.html">Back to portfolio</a></footer>
@@ -36,7 +36,7 @@
     const email = document.querySelector('#email');
     form.addEventListener('submit', function(event) {
       const value = email.value.trim();
-      if (!value.toLowerCase().endsWith('@gmail.com')) {
+      if (!/^[^\s@]+@gmail\.com$/i.test(value)) {
         event.preventDefault();
         email.setCustomValidity('Please enter a Gmail address ending in @gmail.com.');
         email.reportValidity();
