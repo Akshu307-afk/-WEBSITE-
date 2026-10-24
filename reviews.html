@@ -23,30 +23,128 @@
       <input type="hidden" name="form-name" value="reviews-and-messages">
       <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
       <div class="field"><label for="name">Name or nickname</label><input id="name" name="name" type="text" maxlength="60" placeholder="What should I call you?" required></div>
-      <div class="field"><label for="email">Gmail address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@gmail.com" required><p class="hint">Enter a correctly formatted Gmail address, such as name@gmail.com. We check the address format, but can’t confirm that the account exists unless email verification is added.</p></div>
+      <div class="field">
+        <label for="email">Gmail address</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="you@gmail.com" required>
+        <p class="hint">We’ll email a six-digit code to confirm you can access this inbox. Codes expire after 10 minutes.</p>
+        <div class="verify-row"><button class="verify-button" type="button" id="send-code">Send verification code</button></div>
+        <div class="verify-row" id="code-row" hidden><input id="verification-code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="6-digit code" aria-label="Six-digit verification code"><button class="verify-button" type="button" id="verify-code">Verify email</button></div>
+        <p class="verify-status" id="verify-status" role="status" aria-live="polite">Email verification is required before sending your message.</p>
+        <input type="hidden" name="email-verified" id="email-verified" value="">
+      </div>
       <div class="field"><label for="kind">What is this about?</label><select id="kind" name="kind" required><option value="">Choose one</option><option>Website review</option><option>Suggestion</option><option>Just saying hello</option><option>Project idea</option></select></div>
       <div class="field"><label for="rating">Website rating</label><select id="rating" name="rating"><option value="">Skip rating</option><option>5 — Awesome</option><option>4 — Great</option><option>3 — Good</option><option>2 — Needs work</option><option>1 — Not for me</option></select></div>
       <div class="field"><label for="message">Your message</label><textarea id="message" name="message" maxlength="1500" placeholder="Write your review, idea, or friendly message…" required></textarea><p class="hint">Up to 1,500 characters. Keep it respectful and don't include passwords, phone numbers, or other sensitive details.</p></div>
       <label class="check"><input type="checkbox" name="permission" value="I understand" required><span>I understand that the site owner will be able to read the message and email address I submit.</span></label>
       <p style="margin-top:22px"><button class="submit" type="submit">Send message ↗</button></p>
-      <p class="privacy">Messages are private to the site owner and will not appear publicly. The form works after Netlify Forms is enabled and this site has been redeployed.</p>
+      <p class="privacy">Messages are private to the site owner and will not appear publicly. Email verification needs the site owner to finish the Netlify and email-provider setup before it can send codes.</p>
     </form>
   </main>
   <footer class="wrap footer">© 2026 Akshobhya · <a href="index.html">Back to portfolio</a></footer>
+  
   <script>
     const form = document.querySelector('form');
     const email = document.querySelector('#email');
+    const sendButton = document.querySelector('#send-code');
+    const codeRow = document.querySelector('#code-row');
+    const codeInput = document.querySelector('#verification-code');
+    const verifyButton = document.querySelector('#verify-code');
+    const status = document.querySelector('#verify-status');
+    const verifiedField = document.querySelector('#email-verified');
+    let verifiedEmail = '';
+
+    function setStatus(message, state) {
+      status.textContent = message;
+      status.dataset.state = state || '';
+    }
+    function resetVerification(message) {
+      verifiedEmail = '';
+      verifiedField.value = '';
+      codeInput.value = '';
+      codeRow.hidden = true;
+      sendButton.disabled = false;
+      sendButton.textContent = 'Send verification code';
+      setStatus(message || 'Email verification is required before sending your message.', '');
+    }
+    async function postJSON(path, payload) {
+      const response = await fetch(path, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+      return data;
+    }
+
+    email.addEventListener('input', () => {
+      email.setCustomValidity('');
+      if (verifiedEmail && email.value.trim().toLowerCase() !== verifiedEmail) {
+        resetVerification('The email address changed. Verify the new address before sending.');
+      }
+    });
+
+    sendButton.addEventListener('click', async () => {
+      const value = email.value.trim().toLowerCase();
+      if (!/^[a-z0-9]+(?:[.+][a-z0-9]+)*@gmail\.com$/.test(value)) {
+        email.setCustomValidity('Please enter a correctly formatted Gmail address, such as name@gmail.com.');
+        email.reportValidity();
+        return;
+      }
+      email.setCustomValidity('');
+      sendButton.disabled = true;
+      setStatus('Sending a verification code…', '');
+      try {
+        const result = await postJSON('/.netlify/functions/send-verification', { email: value });
+        codeRow.hidden = false;
+        setStatus(result.message || 'Code sent. Check your inbox and spam folder.', 'success');
+        codeInput.focus();
+      } catch (error) {
+        setStatus(error.message, 'error');
+      } finally {
+        sendButton.disabled = false;
+      }
+    });
+
+    verifyButton.addEventListener('click', async () => {
+      const value = email.value.trim().toLowerCase();
+      const code = codeInput.value.trim();
+      if (!/^\d{6}$/.test(code)) {
+        setStatus('Enter the six-digit code from your email.', 'error');
+        codeInput.focus();
+        return;
+      }
+      verifyButton.disabled = true;
+      setStatus('Checking the code…', '');
+      try {
+        const result = await postJSON('/.netlify/functions/verify-email', { email: value, code });
+        verifiedEmail = value;
+        verifiedField.value = 'verified';
+        setStatus('✓ Inbox verified. You can send your message now.', 'success');
+        codeRow.hidden = true;
+        sendButton.textContent = 'Email verified ✓';
+        sendButton.disabled = true;
+      } catch (error) {
+        setStatus(error.message, 'error');
+      } finally {
+        verifyButton.disabled = false;
+      }
+    });
+
     form.addEventListener('submit', function(event) {
-      const value = email.value.trim();
-      if (!/^[a-z0-9]+(?:[.+][a-z0-9]+)*@gmail\.com$/i.test(value)) {
+      const value = email.value.trim().toLowerCase();
+      if (!/^[a-z0-9]+(?:[.+][a-z0-9]+)*@gmail\.com$/.test(value)) {
         event.preventDefault();
         email.setCustomValidity('Please enter a correctly formatted Gmail address, such as name@gmail.com.');
         email.reportValidity();
-      } else {
-        email.setCustomValidity('');
+        return;
+      }
+      if (!verifiedEmail || verifiedEmail !== value || verifiedField.value !== 'verified') {
+        event.preventDefault();
+        setStatus('Please verify that you can access this Gmail inbox before sending.', 'error');
+        sendButton.focus();
       }
     });
-    email.addEventListener('input', () => email.setCustomValidity(''));
   </script>
 </body>
 </html>
