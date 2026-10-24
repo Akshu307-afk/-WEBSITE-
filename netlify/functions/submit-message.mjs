@@ -10,6 +10,8 @@ export default async (request) => {
   let body;
   try { body = await request.json(); } catch { return json({ error: "Please check the form and try again." }, 400); }
 
+  if (String(body.botField || "").trim()) return json({ error: "Submission rejected." }, 400);
+
   const name = String(body.name || "").trim().slice(0, 60);
   const email = String(body.email || "").trim().toLowerCase();
   const kind = String(body.kind || "").trim().slice(0, 60);
