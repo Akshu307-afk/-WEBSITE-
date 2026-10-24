@@ -38,7 +38,7 @@
     const email = document.querySelector('#email');
     form.addEventListener('submit', function(event) {
       const value = email.value.trim();
-      if (!/^[^\s@]+@gmail\.com$/i.test(value)) {
+      if (!/^[a-z0-9]+(?:[.+][a-z0-9]+)*@gmail\.com$/i.test(value)) {
         event.preventDefault();
         email.setCustomValidity('Please enter a correctly formatted Gmail address, such as name@gmail.com.');
         email.reportValidity();
