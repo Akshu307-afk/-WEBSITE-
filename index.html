@@ -59,6 +59,33 @@
     .hardware-info{padding:22px 24px 25px}.hardware-info h3{font-size:1.25rem;letter-spacing:-.035em;margin:0 0 6px}.hardware-info p{color:var(--muted);font-size:.94rem;margin:0}.hardware-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px}.hardware-meta .tag{background:var(--soft);color:var(--accent)}.text-link{color:var(--accent);font-size:.88rem;font-weight:750}
     .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:start}.about-card{background:#eaf0ec;border-radius:20px;padding:30px;min-height:245px;display:flex;flex-direction:column;justify-content:space-between}.about-card .symbol{font-size:3.5rem;line-height:1}.about-card p{font-size:1.35rem;font-weight:650;line-height:1.3;letter-spacing:-.04em;margin:30px 0 0}.about-copy p{color:var(--muted);margin-top:0}.interest-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:24px}.interest{border:1px solid var(--line);background:var(--paper);padding:12px 14px;border-radius:11px;font-size:.9rem}
     .connect{background:var(--ink);color:white;border-radius:22px;padding:clamp(26px,5vw,52px);display:flex;justify-content:space-between;align-items:center;gap:24px}.connect h2{margin:8px 0;font-size:clamp(2rem,5vw,3.8rem);letter-spacing:-.07em;line-height:1.04}.connect p{color:#bcbfbb;max-width:460px}.connect .btn{background:white;color:var(--ink);border-color:white;white-space:nowrap}.footer{padding:28px 0 35px;display:flex;justify-content:space-between;gap:15px;color:var(--muted);font-size:.82rem}.footer-links{display:flex;gap:18px}
+
+    .tool-section{padding:76px 0}
+    .terminal-shell{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 35px #18251b08}
+    .terminal-bar{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--line);background:#fbfbf9}
+    .terminal-dot{width:9px;height:9px;border-radius:50%;background:#d7d7d0}
+    .terminal-title{margin-left:7px;color:var(--muted);font-size:.8rem}
+    .terminal-output{min-height:180px;max-height:260px;overflow:auto;padding:18px 20px;color:#3c5147;font: .9rem/1.8 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap}
+    .terminal-line{display:flex;gap:10px;padding:12px 16px;border-top:1px solid var(--line);align-items:center}
+    .terminal-prompt{color:var(--accent);font:700 .9rem ui-monospace,monospace}
+    .terminal-input{min-width:0;flex:1;border:0;outline:0;background:transparent;font: .9rem ui-monospace,monospace;color:var(--ink)}
+    .terminal-input:focus{outline:0}
+    .terminal-help{padding:0 20px 16px;color:var(--muted);font-size:.8rem}
+    .repo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .repo-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;min-height:185px}
+    .repo-card h3{font-size:1.05rem;letter-spacing:-.03em;margin:12px 0 6px;overflow-wrap:anywhere}
+    .repo-card p{font-size:.88rem;color:var(--muted);margin:0 0 16px}
+    .repo-meta{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.76rem;margin-top:auto}
+    .repo-card .text-link{margin-top:15px;align-self:flex-start}
+    .timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:28px}
+    .milestone{padding:20px;background:var(--paper);border:1px solid var(--line);border-radius:15px}
+    .milestone .step{font-size:.75rem;color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .milestone h3{font-size:1rem;margin:12px 0 5px;letter-spacing:-.025em}
+    .milestone p{font-size:.86rem;color:var(--muted);margin:0}
+    .terminal-secret{color:var(--accent);font-weight:700}
+    @media(max-width:700px){.repo-grid{grid-template-columns:1fr}.timeline{grid-template-columns:1fr 1fr}.tool-section{padding:55px 0}}
+    @media(max-width:420px){.timeline{grid-template-columns:1fr}}
+
     @media(max-width:700px){.wrap{width:min(var(--max),calc(100% - 32px))}.nav-inner{height:64px}.nav-toggle{display:block}.nav-links{display:none;position:absolute;top:63px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);padding:18px 24px 22px;flex-direction:column;align-items:flex-start;gap:16px}.nav-links.open{display:flex}.hero{padding:45px 0 60px}.hero-layout{grid-template-columns:1fr;gap:8px}.hero h1{font-size:clamp(3.3rem,16vw,5.5rem)}.hero-visual{min-height:285px;order:-1}.uno-scene{max-width:330px}.hero-visual:after{font-size:.52rem;bottom:0}.hero-note{margin-top:48px;flex-direction:column;gap:4px}.section{padding:55px 0}.section-head{align-items:flex-start;flex-direction:column}.cards,.about-grid,.hardware-grid{grid-template-columns:1fr}.about-grid{gap:22px}.interest-list{grid-template-columns:1fr 1fr}.connect{align-items:flex-start;flex-direction:column}.footer{flex-direction:column}.project{min-height:205px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
   </style>
@@ -69,7 +96,7 @@
       <a class="brand" href="index.html" aria-label="Akshobhya home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="5" y="5" width="22" height="22" rx="6" stroke-width="1.6"/><path d="M10 22 16 10l6 12M12.5 17h7M2 12h3M2 20h3M27 12h3M27 20h3M12 2v3M20 2v3M12 27v3M20 27v3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="brand-name">akshobhya<span>.</span></span></a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
       <nav class="nav-links" id="nav-links" aria-label="Main navigation">
-        <a href="#projects">Projects</a><a href="#current">Current build</a><a href="#about">About</a><a href="index2.html">Learning</a><a href="reviews.html">Reviews & messages</a><a href="#connect">Connect ↗</a>
+        <a href="#projects">Project lab</a><a href="#current">Current build</a><a href="#terminal">Terminal</a><a href="#github">GitHub</a><a href="#journey">Journey</a><a href="reviews.html">Messages</a>
       </nav>
     </div>
   </header>
@@ -108,6 +135,31 @@
         </article>
       </div>
     </section>
+
+    <section class="tool-section wrap" id="terminal">
+      <div class="section-head"><div><div class="kicker">A tiny interactive corner</div><h2>Portfolio terminal.</h2></div><p class="section-intro">Try a command to explore the site. It is a safe little interface — it never runs commands on your device.</p></div>
+      <div class="terminal-shell">
+        <div class="terminal-bar" aria-hidden="true"><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-dot"></span><span class="terminal-title">akshobhya@portfolio:~</span></div>
+        <div class="terminal-output" id="terminal-output" role="log" aria-live="polite">Welcome! Type help to see available commands.\n\n> Ready when you are.</div>
+        <form class="terminal-line" id="terminal-form"><label class="terminal-prompt" for="terminal-input">›</label><input class="terminal-input" id="terminal-input" name="command" autocomplete="off" spellcheck="false" placeholder="type help and press Enter" aria-label="Terminal command"><button class="submit" type="submit" style="padding:8px 12px">Run</button></form>
+        <div class="terminal-help">Commands: help · projects · github · journey · about · contact · clear · secret</div>
+      </div>
+    </section>
+    <section class="tool-section wrap" id="github">
+      <div class="section-head"><div><div class="kicker">Open-source corner</div><h2>From my GitHub.</h2></div><p class="section-intro">A live peek at public repositories. If GitHub's API is unavailable, the link below still takes you to my profile.</p></div>
+      <div class="repo-grid" id="repo-grid" aria-live="polite"><article class="repo-card"><span class="kicker">Loading repositories</span><h3>Fetching public projects…</h3><p>This section updates from GitHub when the page loads.</p></article></div>
+      <p style="margin-top:20px"><a class="btn btn-secondary" href="https://github.com/Akshu307-afk" target="_blank" rel="noopener noreferrer">View all repositories ↗</a></p>
+    </section>
+    <section class="tool-section wrap" id="journey">
+      <div class="section-head"><div><div class="kicker">Progress over perfection</div><h2>My engineering journey.</h2></div><p class="section-intro">A living roadmap — not a list of achievements to rush through. Each step builds on the last.</p></div>
+      <div class="timeline">
+        <article class="milestone"><div class="step">01 · Learn</div><h3>Build the basics</h3><p>Practise programming, understand components, and learn how circuits work.</p></article>
+        <article class="milestone"><div class="step">02 · Experiment</div><h3>Make things respond</h3><p>Use Arduino, sensors, LEDs, and an ESP32 OLED to turn code into action.</p></article>
+        <article class="milestone"><div class="step">03 · Design</div><h3>Join hardware + software</h3><p>Plan a practical macropad and explore interfaces for useful tools.</p></article>
+        <article class="milestone"><div class="step">04 · Next</div><h3>Document and improve</h3><p>Share build notes, test ideas, fix bugs, and keep adding what I learn.</p></article>
+      </div>
+    </section>
+
     <section class="section wrap" id="about">
       <div class="about-grid">
         <div class="about-card"><span class="kicker">A little about me</span><div><div class="symbol" aria-hidden="true">↗</div><p>Curiosity first.<br>Build, learn, repeat.</p></div></div>
@@ -117,10 +169,76 @@
     <section class="wrap" id="connect"><div class="connect"><div><div class="kicker" style="color:#a8c8ba">Find me online</div><h2>Let's keep<br>making things.</h2><p>Follow my learning journey, explore my code, or check out my Scratch projects.</p></div><div class="actions" style="margin:0;flex-direction:column"><a class="btn" href="https://github.com/Akshu307-afk" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="btn" href="https://scratch.mit.edu/users/akshobhya1233/" target="_blank" rel="noopener noreferrer">Scratch ↗</a></div></div></section>
   </main>
   <footer class="wrap footer"><span>© 2026 Akshobhya · Made while learning.</span><div class="footer-links"><a href="Index1.html">About</a><a href="index2.html">Learning</a><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top ↑</a></div></footer>
+  
   <script>
     const toggle=document.querySelector('.nav-toggle');const nav=document.querySelector('.nav-links');
     toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});
     nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');}));
+
+    // Public GitHub API: no access token or secret is needed for public repositories.
+    const repoGrid=document.getElementById('repo-grid');
+    fetch('https://api.github.com/users/Akshu307-afk/repos?sort=updated&per_page=6')
+      .then(response=>{if(!response.ok)throw new Error('GitHub is temporarily unavailable.');return response.json();})
+      .then(repos=>{
+        repoGrid.textContent='';
+        if(!repos.length)throw new Error('No public repositories were returned.');
+        repos.forEach(repo=>{
+          const card=document.createElement('article');card.className='repo-card';
+          const label=document.createElement('div');label.className='kicker';label.textContent=repo.fork?'Community project':'Public repository';
+          const title=document.createElement('h3');title.textContent=repo.name;
+          const desc=document.createElement('p');desc.textContent=repo.description||'A public repository from my GitHub profile.';
+          const meta=document.createElement('div');meta.className='repo-meta';
+          const language=document.createElement('span');language.textContent=repo.language||'Code';
+          const stars=document.createElement('span');stars.textContent='★ '+repo.stargazers_count;
+          meta.append(language,stars);
+          const link=document.createElement('a');link.className='text-link';link.href=repo.html_url;link.target='_blank';link.rel='noopener noreferrer';link.textContent='Open repository ↗';
+          card.append(label,title,desc,meta,link);repoGrid.append(card);
+        });
+      })
+      .catch(()=>{
+        repoGrid.textContent='';
+        const card=document.createElement('article');card.className='repo-card';
+        const title=document.createElement('h3');title.textContent='Browse my public projects';
+        const desc=document.createElement('p');desc.textContent='Live repository loading is temporarily unavailable. Open GitHub to see the latest projects.';
+        const link=document.createElement('a');link.className='text-link';link.href='https://github.com/Akshu307-afk?tab=repositories';link.target='_blank';link.rel='noopener noreferrer';link.textContent='View repositories ↗';
+        card.append(title,desc,link);repoGrid.append(card);
+      });
+
+    // A deliberately limited command list: user input is never evaluated as code.
+    const terminalForm=document.getElementById('terminal-form');
+    const terminalInput=document.getElementById('terminal-input');
+    const terminalOutput=document.getElementById('terminal-output');
+    function terminalWrite(text,secret){
+      const line=document.createElement('div');
+      if(secret)line.className='terminal-secret';
+      line.textContent=text;terminalOutput.append(line);terminalOutput.scrollTop=terminalOutput.scrollHeight;
+    }
+    terminalForm.addEventListener('submit',event=>{
+      event.preventDefault();
+      const command=terminalInput.value.trim().toLowerCase();
+      if(!command)return;
+      terminalWrite('› '+command);
+      const responses={
+        help:'Available commands: help, projects, github, journey, about, contact, clear, secret',
+        projects:'Project lab: ESP32 OLED HUD · Arduino experiments · Personal AI assistant · DIY macropad. Scroll to Project lab above.',
+        github:'Opening my public GitHub profile in a new tab…',
+        journey:'My path: learn the basics → experiment with hardware → combine hardware and software → document and improve.',
+        about:'I am a student learning coding, electronics, robotics, and interface design by building small projects.',
+        contact:'Use the Messages link in the navigation to send a review or suggestion.'
+      };
+      if(command==='clear'){terminalOutput.textContent='Terminal cleared. Type help to continue.';terminalInput.value='';return;}
+      if(command==='secret'){terminalWrite('Easter egg unlocked: keep being curious. Every great build starts with a tiny experiment. ✦',true);}
+      else if(responses[command]){terminalWrite(responses[command]);if(command==='github')window.open('https://github.com/Akshu307-afk','_blank','noopener,noreferrer');}
+      else terminalWrite('Unknown command. Type help to see the list.');
+      terminalInput.value='';
+    });
+    // Small keyboard easter egg: type "build" while not typing in a field.
+    let secretKeys='';
+    document.addEventListener('keydown',event=>{
+      if(event.target.closest('input,textarea,select'))return;
+      secretKeys=(secretKeys+event.key.toLowerCase()).slice(-5);
+      if(secretKeys==='build'){terminalWrite('✦ Secret found: BUILD · LEARN · REPEAT ✦',true);document.getElementById('terminal').scrollIntoView({behavior:'smooth'});}
+    });
   </script>
 </body>
 </html>
