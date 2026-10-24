@@ -19,8 +19,7 @@
     <div class="eyebrow">Guestbook · Reviews · Friendly messages</div>
     <h1>Got a thought?<br>Leave a note.</h1>
     <p class="lead">Tell me what you think of the website, share a suggestion, or just say hello. Please be kind and don't share private information.</p>
-    <form class="form-card" name="reviews-and-messages" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="reviews-and-messages">
+    <form class="form-card" name="reviews-and-messages" method="POST" action="/thanks.html">
       <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
       <div class="field"><label for="name">Name or nickname</label><input id="name" name="name" type="text" maxlength="60" placeholder="What should I call you?" required></div>
       <div class="field">
@@ -131,18 +130,39 @@
       }
     });
 
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', async function(event) {
+      event.preventDefault();
       const value = email.value.trim().toLowerCase();
       if (!/^[a-z0-9]+(?:[.+][a-z0-9]+)*@gmail\.com$/.test(value)) {
-        event.preventDefault();
         email.setCustomValidity('Please enter a correctly formatted Gmail address, such as name@gmail.com.');
         email.reportValidity();
         return;
       }
+      email.setCustomValidity('');
       if (!verifiedEmail || verifiedEmail !== value || verifiedField.value !== 'verified') {
-        event.preventDefault();
         setStatus('Please verify that you can access this Gmail inbox before sending.', 'error');
         sendButton.focus();
+        return;
+      }
+      const submitButton = form.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending…';
+      setStatus('Sending your message privately…', '');
+      try {
+        const result = await postJSON('/.netlify/functions/submit-message', {
+          name: document.querySelector('#name').value,
+          email: value,
+          kind: document.querySelector('#kind').value,
+          rating: document.querySelector('#rating').value,
+          message: document.querySelector('#message').value,
+          botField: form.querySelector('[name="bot-field"]').value
+        });
+        setStatus(result.message || 'Message sent.', 'success');
+        window.location.href = '/thanks.html';
+      } catch (error) {
+        setStatus(error.message, 'error');
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send message ↗';
       }
     });
   </script>
