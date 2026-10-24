@@ -1,0 +1,9 @@
+{
+  "name": "akshobhya-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static portfolio with Netlify email verification functions",
+  "dependencies": {
+    "@netlify/blobs": "^8.2.0"
+  }
+}
