@@ -23,7 +23,7 @@
       <input type="hidden" name="form-name" value="reviews-and-messages">
       <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
       <div class="field"><label for="name">Name or nickname</label><input id="name" name="name" type="text" maxlength="60" placeholder="What should I call you?" required></div>
-      <div class="field"><label for="email">Gmail address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@gmail.com" required><p class="hint">Please use an address ending in @gmail.com. The form checks the format, but cannot confirm that the mailbox actually exists.</p></div>
+      <div class="field"><label for="email">Gmail address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@gmail.com" required><p class="hint">Enter a correctly formatted Gmail address, such as name@gmail.com. We check the address format, but can’t confirm that the account exists unless email verification is added.</p></div>
       <div class="field"><label for="kind">What is this about?</label><select id="kind" name="kind" required><option value="">Choose one</option><option>Website review</option><option>Suggestion</option><option>Just saying hello</option><option>Project idea</option></select></div>
       <div class="field"><label for="rating">Website rating</label><select id="rating" name="rating"><option value="">Skip rating</option><option>5 — Awesome</option><option>4 — Great</option><option>3 — Good</option><option>2 — Needs work</option><option>1 — Not for me</option></select></div>
       <div class="field"><label for="message">Your message</label><textarea id="message" name="message" maxlength="1500" placeholder="Write your review, idea, or friendly message…" required></textarea><p class="hint">Up to 1,500 characters. Keep it respectful and don't include passwords, phone numbers, or other sensitive details.</p></div>
@@ -40,7 +40,7 @@
       const value = email.value.trim();
       if (!/^[^\s@]+@gmail\.com$/i.test(value)) {
         event.preventDefault();
-        email.setCustomValidity('Please enter a Gmail address ending in @gmail.com.');
+        email.setCustomValidity('Please enter a correctly formatted Gmail address, such as name@gmail.com.');
         email.reportValidity();
       } else {
         email.setCustomValidity('');
