@@ -175,7 +175,7 @@
   <aside class="cassette-player" id="cassette-player" aria-label="Chill music player">
     <div class="cassette-top"><div class="cassette-brand"><span class="cassette-status" aria-hidden="true"></span> Pocket mixtape</div><button class="cassette-hide" id="cassette-minimize" type="button" aria-label="Minimize music player" title="Minimize">−</button></div>
     <div class="cassette-shell"><div class="cassette-art" aria-hidden="true"><span class="cassette-reel"></span><span class="cassette-reel"></span><span class="cassette-tape"></span></div><div class="cassette-track"><strong id="cassette-title">Random chill loop</strong><span id="cassette-subtitle">Original generative lo-fi · 80 BPM</span></div></div>
-    <div class="cassette-controls"><button class="cassette-control primary" id="cassette-play" type="button" aria-label="Play chill music" title="Play">▶</button><button class="cassette-control" id="cassette-next" type="button" aria-label="Generate a new chill loop" title="New loop">↻</button><label class="cassette-volume-label" for="cassette-volume">VOL</label><input class="cassette-volume" id="cassette-volume" type="range" min="0" max="0.28" step="0.01" value="0.10" aria-label="Music volume"></div>
+    <div class="cassette-controls"><button class="cassette-control primary" id="cassette-play" type="button" aria-label="Play chill music" title="Play">▶</button><button class="cassette-control" id="cassette-next" type="button" aria-label="Generate a new chill loop" title="New loop">↻</button><label class="cassette-volume-label" for="cassette-volume">VOL</label><input class="cassette-volume" id="cassette-volume" type="range" min="0" max="0.7" step="0.01" value="0.35" aria-label="Music volume"></div>
     <p class="cassette-credit">Made in your browser · audio starts only when you press play.</p>
   </aside>
   <script>
@@ -257,7 +257,7 @@
     ];
     function musicNote(freq,time,duration,volume,type='sine',endFreq=null){
       const osc=musicContext.createOscillator(),gain=musicContext.createGain();osc.type=type;osc.frequency.setValueAtTime(freq,time);if(endFreq)osc.frequency.exponentialRampToValueAtTime(Math.max(1,endFreq),time+duration*.8);
-      gain.gain.setValueAtTime(.0001,time);gain.gain.exponentialRampToValueAtTime(Math.max(.0002,volume),time+.025);gain.gain.exponentialRampToValueAtTime(.0001,time+duration);
+      gain.gain.setValueAtTime(.0001,time);gain.gain.exponentialRampToValueAtTime(Math.min(.8,Math.max(.0002,volume*3)),time+.025);gain.gain.exponentialRampToValueAtTime(.0001,time+duration);
       osc.connect(gain);gain.connect(musicMaster);osc.start(time);osc.stop(time+duration+.03);
     }
     function musicScheduleStep(step,time){
