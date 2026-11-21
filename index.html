@@ -76,6 +76,16 @@
     @media(max-width:700px){.connect{grid-template-columns:1fr}.contact-links{grid-template-columns:repeat(2,minmax(0,1fr))}.cassette-player{right:12px;bottom:12px}.cassette-player:not(.cassette-minimized){width:min(300px,calc(100vw - 24px))}}@media(max-width:380px){.contact-links{grid-template-columns:1fr}.contact-link.email-link{grid-column:auto}}@media(prefers-reduced-motion:reduce){.cassette-player.is-playing .cassette-reel{animation:none}}
 
     .tool-section{padding:76px 0}
+
+    .activity-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .activity-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;gap:17px;align-items:flex-start;min-height:150px}
+    .activity-icon{width:48px;height:48px;flex:0 0 48px;border-radius:14px;background:var(--soft);display:grid;place-items:center;color:var(--accent);font-size:1.45rem}
+    .activity-card h3{margin:1px 0 6px;font-size:1.12rem;letter-spacing:-.03em}
+    .activity-card p{margin:0;color:var(--muted);font-size:.91rem}
+    .activity-card .activity-label{display:inline-block;margin-top:12px;color:var(--accent);font-size:.74rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .activity-feature{grid-column:1/-1;border-color:#799c88;background:linear-gradient(120deg,var(--paper),var(--soft))}
+    @media(max-width:700px){.activity-grid{grid-template-columns:1fr}.activity-feature{grid-column:auto}}
+
     .terminal-shell{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 35px #18251b08}
     .terminal-bar{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--line);background:#fbfbf9}
     .terminal-dot{width:9px;height:9px;border-radius:50%;background:#d7d7d0}
@@ -216,7 +226,7 @@
       <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme"><span class="theme-icon" aria-hidden="true">☀</span><span class="theme-label">Light mode</span></button>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">Menu</button>
       <nav class="nav-links" id="nav-links" aria-label="Main navigation">
-        <a href="#projects">Project lab</a><a href="#current">Current build</a><a href="#terminal">Terminal</a><a href="#github">GitHub</a><a href="#journey">Journey</a><a href="reviews.html">Messages</a>
+        <a href="#projects">Project lab</a><a href="#activities">Activities</a><a href="#current">Current build</a><a href="#terminal">Terminal</a><a href="#github">GitHub</a><a href="#journey">Journey</a><a href="reviews.html">Messages</a>
       </nav>
     </div>
   </header>
@@ -253,6 +263,17 @@
           </div>
           <div class="hardware-info"><h3>DIY coding macropad</h3><p>A compact shortcut pad with a tiny screen planned to show the current song and useful coding controls.</p><div class="hardware-meta"><span class="tag">Current focus</span><a class="text-link" href="https://github.com/Akshu307-afk/HackPad-Macropad" target="_blank" rel="noopener noreferrer">View macropad repo ↗</a></div><p style="margin-top:12px"><a class="text-link" href="reviews.html">Suggest a feature ↗</a></p></div>
         </article>
+      </div>
+    </section>
+
+    <section class="section wrap" id="activities">
+      <div class="section-head"><div><div class="kicker">Beyond the screen</div><h2>Activities & achievements.</h2></div><p class="section-intro">A mix of sport, creativity, and hands-on learning — because I enjoy building skills in more than one area.</p></div>
+      <div class="activity-grid">
+        <article class="activity-card activity-feature"><div class="activity-icon" aria-hidden="true">🏆</div><div><h3>Karate — 1st Prize</h3><p>Recognised with first prize in a karate competition. Training has helped me practise discipline, focus, confidence, and persistence.</p><span class="activity-label">Sports achievement</span></div></article>
+        <article class="activity-card"><div class="activity-icon" aria-hidden="true">🎮</div><div><h3>Game development</h3><p>Learning Godot by building Coin Quest, experimenting with player movement, platforms, enemies, and game mechanics.</p><span class="activity-label">Creative coding</span></div></article>
+        <article class="activity-card"><div class="activity-icon" aria-hidden="true">⌁</div><div><h3>ESP32 & OLED projects</h3><p>Making small display-based projects, including a cozy pixel-art room companion.</p><span class="activity-label">Electronics</span></div></article>
+        <article class="activity-card"><div class="activity-icon" aria-hidden="true">⌘</div><div><h3>DIY HackPad</h3><p>Designing a custom macropad with coding shortcuts and useful controls, combining hardware planning with firmware.</p><span class="activity-label">Maker project</span></div></article>
+        <article class="activity-card"><div class="activity-icon" aria-hidden="true">✦</div><div><h3>Creative coding & experiments</h3><p>Exploring Scratch, Arduino, interface design, and personal software ideas by learning through practical experiments.</p><span class="activity-label">Always learning</span></div></article>
       </div>
     </section>
 
